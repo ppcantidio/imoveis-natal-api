@@ -1,5 +1,5 @@
 from src.database import UserDB
-from src.utils.errors import AbstractErrror
+from src.utils.errors_util import CommonError
 
 
 class AbstractUserService:
@@ -7,8 +7,7 @@ class AbstractUserService:
         self.db = user_db
 
     def create_user(self, user_object):
-        if self.__user_existence(user_object):
-            raise AbstractErrror('user alredy exist')
+        self.__check_user_existence(user_object)
 
         user_object.password = self.__generate_password_hash(user_object)
 
@@ -18,11 +17,9 @@ class AbstractUserService:
         user = self.db.get_user_by_id(user_id)
         return user
 
-
-    def __user_existence(self, user_object):
+    def __check_user_existence(self, user_object):
         if self.db.get_object_by_email(user_object.email):
-            return True
-        return False
+            raise CommonError("user alredy exist")
 
     def __generate_password_hash(self, user_object):
         return user_object.password

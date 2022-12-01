@@ -2,18 +2,17 @@ from marshmallow import Schema, fields
 
 
 class AbstractUser(Schema):
-    email = fields.String()
-    senha = fields.String()
-    nome = fields.String()
-    dt_nascimento = fields.String()
-    cpf = fields.String()
-    celular = fields.String()
+    email = fields.String(required=True)
+    senha = fields.String(required=True)
+    nome = fields.String(required=True)
+    dt_nascimento = fields.String(required=True)
+    cpf = fields.String(required=True)
+    celular = fields.String(required=True)
 
 
-class AbstractGetUser
-
-class BaseAdminUser(AbstractUser):
+class AbstractGetUser:
     pass
 
 
-
+class BaseAdminUser(AbstractUser):
+    pass
