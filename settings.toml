@@ -2,6 +2,8 @@
 DEBUG = false
 SECRET_KEY = "jadkfbsdkjbfbh"
 PASSWORD_SCHEMES = ['pbkdf2_sha512', 'md5_crypt']
+URL_CONNECTION = 'mongodb://localhost:27017'
+DB_NAME = 'imoveis_natal'
 EXTENSIONS = [
     "src.extensions.blueprints:init_app",
     "src.extensions.commands:init_app"
